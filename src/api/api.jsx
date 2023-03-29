@@ -1,9 +1,10 @@
 import storage from '../functions/handleLocalStorage';
 
-// const API_URL = 'https://rich-cyan-elk-tie.cyclic.app';
-const API_URL = 'http://localhost:3000';
-// const TOKEN_API_URL = 'https://modern-gray-bedclothes.cyclic.app/token'
-const TOKEN_API_URL = 'http://localhost:8080/token';
+const API_URL = 'https://rich-cyan-elk-tie.cyclic.app';
+const TOKEN_API_URL = 'https://modern-gray-bedclothes.cyclic.app/token';
+
+// const API_URL = 'http://localhost:3000';
+// const TOKEN_API_URL = 'http://localhost:8080/token';
 
 const POST_CREATE_USER = (body) => {
 	return {
