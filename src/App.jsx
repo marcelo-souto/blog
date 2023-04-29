@@ -22,7 +22,7 @@ const App = () => {
 				<GlobalStyles />
 				<Stack minHeight={'calc(100vh + 112px)'}>
 					<Header />
-					<Stack flex='1' display='grid'>
+					<Stack flex='1' display='grid' >
 						<Routes>
 							<Route path='login/*' element={<LoginPage />} />
 							<Route

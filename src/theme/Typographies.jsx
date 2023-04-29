@@ -32,4 +32,18 @@ const title2v2 = {
 	display: 'flex'
 };
 
-export default { title1v1, title2v1, title2v2 };
+const title3v1 = {
+	fontFamily: 'Inter',
+	fontWeight: 600,
+	fontSize: 24,
+	color: grey[800],
+	display: 'flex'
+};
+
+const title4v1 = {
+	fontFamily: 'inter',
+	fontWeight: 500,
+	fontSize: 18,
+}
+
+export default { title1v1, title2v1, title2v2, title3v1, title4v1 };

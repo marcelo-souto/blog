@@ -1,6 +1,5 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 import { deepPurple, grey } from '@mui/material/colors';
-import shadows from '@mui/material/styles/shadows';
 import Typographies from './Typographies';
 
 let theme = createTheme({
@@ -32,8 +31,9 @@ let theme = createTheme({
 			styleOverrides: {
 				root: {
 					backgroundColor: grey[100],
-					boxShadow: shadows[1],
+					boxShadow: '0px 0px 2px 2px rgba(24, 24, 24, 0.075)',
 					borderRadius: 8,
+					color: grey[800],
 					'&.Mui-selected': {
 						backgroundColor: deepPurple['A200'],
 						color: '#FFF'

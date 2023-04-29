@@ -45,7 +45,10 @@ const Header = () => {
 				sx={{
 					display: 'flex',
 					justifyContent: 'space-between',
-					alignItems: 'center'
+					alignItems: 'center',
+					maxWidth: 960,
+					width: '100%',
+					margin: '0 auto'
 				}}
 			>
 				<Button

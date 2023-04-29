@@ -23,12 +23,12 @@ const Button = ({ children, variant, loading, onClick, ...props }) => {
 	return (
 		<>
 			{!loading && (
-				<Btn variant={variant} onClick={onClick} {...props}>
+				<Btn variant={variant} onClick={onClick} {...props} disableElevation>
 					{children}
 				</Btn>
 			)}
 			{loading && (
-				<Btn variant={variant} disabled onClick={onClick}>
+				<Btn variant={variant} disabled onClick={onClick} disableElevation>
 					<LoadingIcon />
 				</Btn>
 			)}
