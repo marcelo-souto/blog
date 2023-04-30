@@ -14,7 +14,7 @@ const DashboardPage = () => {
 			<DashboardMenu mobile={mobile} />
 			<Stack flexGrow={1} mt={6} pl={3} pr={2}>
 				<Routes>
-					<Route path='/posts' element={<DashboardPosts />} />
+					<Route path='/' end element={<DashboardPosts />} />
 					<Route path='/account' element={<DashboardAccount />} />
 					<Route path='/statistics' element={<DashboardStatistics />} />
 				</Routes>

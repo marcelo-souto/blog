@@ -51,7 +51,7 @@ const DashboardMenu = ({ mobile }) => {
 			<List sx={{ display: mobile && 'flex' }}>
 				<ListItem
 					component={Link}
-					to='posts'
+					to=''
 					sx={
 						mobile && {
 							'& .MuiListItemButton-root': {
@@ -64,7 +64,7 @@ const DashboardMenu = ({ mobile }) => {
 						}
 					}
 				>
-					<ListItemButton selected={pathname.includes('posts')}>
+					<ListItemButton selected={/dashboard\/?$/.test(pathname)}>
 						<ListItemIcon>
 							<StickyNote2OutlinedIcon />
 						</ListItemIcon>

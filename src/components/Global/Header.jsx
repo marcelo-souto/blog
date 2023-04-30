@@ -48,6 +48,7 @@ const Header = () => {
 					alignItems: 'center',
 					maxWidth: 960,
 					width: '100%',
+					boxSizing: 'border-box',
 					margin: '0 auto'
 				}}
 			>
