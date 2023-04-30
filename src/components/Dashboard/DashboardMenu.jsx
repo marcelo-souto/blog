@@ -9,67 +9,122 @@ import {
 	ListItemButton,
 	ListItemText,
 	Stack,
-	Typography,
-	IconButton,
-	useMediaQuery
+	Typography
 } from '@mui/material';
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const DashboardMenu = () => {
+const DashboardMenu = ({ mobile }) => {
 	const { user } = React.useContext(UserContext);
-	const [menuSelected, setMenuSelected] = React.useState(null);
-
-	const mobile = useMediaQuery('(max-width:600px)');
-
-	const handleClick = (e) => {
-		setMenuSelected(e.target.innerText);
-	};
+	const { pathname } = useLocation();
 
 	return (
-		<Stack pt={6} maxWidth={260} width='100%'>
+		<Stack
+			sx={{
+				paddingTop: mobile ? '0px' : '42px',
+				maxWidth: mobile ? '100%' : '260px',
+				width: '100%',
+				position: mobile && 'fixed',
+				bottom: 0
+			}}
+		>
 			<Stack alignItems='center' justifyContent='center'>
-				<UserAvatar />
-				<Typography color='grey.800' mt={3} mb={1} variant='h6' component='p'>
-					Olá, {user.name.split(' ')[0]}
-				</Typography>
+				{!mobile && (
+					<>
+						<UserAvatar />
+						<Typography
+							color='grey.800'
+							mt={3}
+							mb={1}
+							variant='h6'
+							component='p'
+						>
+							Olá, {user.name.split(' ')[0]}
+						</Typography>
+					</>
+				)}
 			</Stack>
-			<List>
-				<ListItem component={Link} to='posts'>
-					<ListItemButton
-						onClick={handleClick}
-						selected={menuSelected === 'Meus Posts'}
-					>
+			<List sx={{ display: mobile && 'flex' }}>
+				<ListItem
+					component={Link}
+					to='posts'
+					sx={
+						mobile && {
+							'& .MuiListItemButton-root': {
+								justifyContent: 'center'
+							},
+							'& .MuiListItemIcon-root': {
+								justifyContent: 'center',
+								minWidth: mobile && 'max-content'
+							}
+						}
+					}
+				>
+					<ListItemButton selected={pathname.includes('posts')}>
 						<ListItemIcon>
 							<StickyNote2OutlinedIcon />
 						</ListItemIcon>
-						<ListItemText primary='Meus Posts' />
+						<ListItemText
+							primary='Meus Posts'
+							sx={{ display: mobile && 'none' }}
+						/>
 					</ListItemButton>
 				</ListItem>
-				<ListItem component={Link} to='account'>
-					<ListItemButton
-						onClick={handleClick}
-						selected={menuSelected === 'Minha Conta'}
-					>
+				<ListItem
+					component={Link}
+					to='account'
+					sx={
+						mobile && {
+							'& .MuiListItemButton-root': {
+								justifyContent: 'center'
+							},
+							'& .MuiListItemIcon-root': {
+								justifyContent: 'center',
+								minWidth: mobile && 'max-content'
+							}
+						}
+					}
+				>
+					<ListItemButton selected={pathname.includes('account')}>
 						<ListItemIcon>
 							<AccountCircleOutlinedIcon />
 						</ListItemIcon>
-						<ListItemText primary='Minha Conta' />
+						<ListItemText
+							primary='Minha Conta'
+							sx={{ display: mobile && 'none' }}
+						/>
 					</ListItemButton>
 				</ListItem>
-				<ListItem component={Link} to='statistics'>
+				<ListItem
+					component={Link}
+					to='statistics'
+					sx={
+						mobile && {
+							'& .MuiListItemButton-root': {
+								justifyContent: 'center'
+							},
+							'& .MuiListItemIcon-root': {
+								justifyContent: 'center',
+								minWidth: 'max-content'
+							}
+						}
+					}
+				>
 					<ListItemButton
-						onClick={handleClick}
-						selected={menuSelected === 'Estatistícas'}
+						selected={pathname.includes('statistics')}
+						sx={{ justifyContent: mobile && 'center' }}
 					>
 						<ListItemIcon>
 							<AssessmentOutlinedIcon />
 						</ListItemIcon>
-						<ListItemText primary='Estatistícas' />
+						<ListItemText
+							primary='Estatistícas'
+							sx={{ display: mobile && 'none' }}
+						/>
 					</ListItemButton>
 				</ListItem>
 			</List>
