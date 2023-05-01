@@ -1,6 +1,5 @@
 import React from 'react';
 import { UserContext } from '../../context/UserContext';
-import UserAvatar from '../Dashboard/UserAvatar';
 
 import {
 	ListItemIcon,
@@ -17,6 +16,7 @@ import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 
 import { Link, useLocation } from 'react-router-dom';
+import UserAvatarDashboard from './UserAvatarDashboard';
 
 const DashboardMenu = ({ mobile }) => {
 	const { user } = React.useContext(UserContext);
@@ -35,7 +35,7 @@ const DashboardMenu = ({ mobile }) => {
 			<Stack alignItems='center' justifyContent='center'>
 				{!mobile && (
 					<>
-						<UserAvatar />
+						<UserAvatarDashboard />
 						<Typography
 							color='grey.800'
 							mt={3}

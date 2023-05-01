@@ -1,4 +1,4 @@
-import { grey, deepPurple } from "@mui/material/colors";
+import { grey, deepPurple } from '@mui/material/colors';
 
 // Fontes
 const title1v1 = {};
@@ -32,6 +32,15 @@ const title2v2 = {
 	display: 'flex'
 };
 
+const title2v3 = {
+	fontFamily: 'Inter',
+	fontWeight: 600,
+	textTransform: 'uppercase',
+	fontSize: 24,
+	color: grey[700],
+	display: 'flex'
+};
+
 const title3v1 = {
 	fontFamily: 'Inter',
 	fontWeight: 600,
@@ -43,7 +52,7 @@ const title3v1 = {
 const title4v1 = {
 	fontFamily: 'inter',
 	fontWeight: 500,
-	fontSize: 18,
-}
+	fontSize: 18
+};
 
-export default { title1v1, title2v1, title2v2, title3v1, title4v1 };
+export default { title1v1, title2v1, title2v2, title3v1, title4v1, title2v3 };

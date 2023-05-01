@@ -68,9 +68,9 @@ const Header = () => {
 							alt={user.name}
 							src={user.avatar.url}
 							sx={{ width: 32, height: 32, backgroundColor: 'primary.main' }}
-						>
-							M
-						</Avatar>
+						/>
+							
+						
 					</IconButton>
 				)}
 
