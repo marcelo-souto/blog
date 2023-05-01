@@ -35,7 +35,6 @@ const title2v2 = {
 const title2v3 = {
 	fontFamily: 'Inter',
 	fontWeight: 600,
-	textTransform: 'uppercase',
 	fontSize: 24,
 	color: grey[700],
 	display: 'flex'

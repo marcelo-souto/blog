@@ -1,20 +1,29 @@
 import React from 'react';
 import { UserContext } from '../../context/UserContext';
-import { Stack, Typography } from '@mui/material';
+import { Button, Link, Stack, Typography } from '@mui/material';
+import DashboardAccountItem from './DashboardAccountItem';
+import useForm from '../../hooks/useForm';
 
 const DashboardAccount = () => {
 	const { user } = React.useContext(UserContext);
-	console.log(user);
+
 	return (
 		<Stack>
-			<Typography variant='title2v3' mb={3}>
-				Informações de conta
-			</Typography>
-			<Typography>Nome: {user?.name}</Typography>
-			<Typography>Email: {user?.email}</Typography>
-			<Typography>
-				URL da Imagem: <a href={user?.avatar?.url}>{user?.avatar?.url}</a>
-			</Typography>
+			<Stack direction='row' mb={3} spacing={1}>
+				<Typography variant='title2v3'>Minha Conta</Typography>
+				<Link
+					component='button'
+					fontFamily='Inter, sans-serif'
+					fontSize='0.8rem'
+					color='grey.600'
+				>
+					editar
+				</Link>
+			</Stack>
+
+			<DashboardAccountItem legend='Nome:' info={user?.name} />
+			<DashboardAccountItem legend='Email:' info={user?.email} />
+			<DashboardAccountItem legend='URL da Imagem:' info={user?.avatar?.url} />
 		</Stack>
 	);
 };
