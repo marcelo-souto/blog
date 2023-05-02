@@ -3,9 +3,14 @@ import { UserContext } from '../../context/UserContext';
 import { Button, Link, Stack, Typography } from '@mui/material';
 import DashboardAccountItem from './DashboardAccountItem';
 import useForm from '../../hooks/useForm';
+import DashboardAccountModal from './DashboardAccountModal';
 
 const DashboardAccount = () => {
 	const { user } = React.useContext(UserContext);
+	const [open, setOpen] = React.useState(false);
+
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 
 	return (
 		<Stack>
@@ -16,6 +21,7 @@ const DashboardAccount = () => {
 					fontFamily='Inter, sans-serif'
 					fontSize='0.8rem'
 					color='grey.600'
+					onClick={handleOpen}
 				>
 					editar
 				</Link>
@@ -24,6 +30,8 @@ const DashboardAccount = () => {
 			<DashboardAccountItem legend='Nome:' info={user?.name} />
 			<DashboardAccountItem legend='Email:' info={user?.email} />
 			<DashboardAccountItem legend='URL da Imagem:' info={user?.avatar?.url} />
+
+			{open && <DashboardAccountModal open={open} handleClose={handleClose} />}
 		</Stack>
 	);
 };

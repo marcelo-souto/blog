@@ -39,6 +39,7 @@ const types = {
 };
 
 function useForm(type) {
+	
 	const [value, setValue] = React.useState('');
 	const [status, setStatus] = React.useState({
 		validated: null,

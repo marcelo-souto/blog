@@ -19,16 +19,16 @@ const Input = ({
 				id={id}
 				label={label}
 				variant={variant}
-				size={size}
+				size={'small' || size}
 				value={value}
 				onChange={onChange}
 				onBlur={onBlur}
 				{...props}
-				error={status.error ? true : false}
+				error={status?.error ? true : false}
 			/>
-			{status.error && (
+			{status?.error && (
 				<FormHelperText sx={{ color: 'error.main' }}>
-					{status.error}
+					{status?.error}
 				</FormHelperText>
 			)}
 		</div>
