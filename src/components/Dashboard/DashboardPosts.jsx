@@ -3,6 +3,8 @@ import { Stack, Typography } from '@mui/material';
 import Button from '../Button';
 import styled from '@emotion/styled';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import TextEditor from '../TextEditor';
+import PostCreate from '../Post/PostCreate';
 
 const Box = styled(Stack)`
 	padding: 1.8rem;
@@ -15,6 +17,13 @@ const Box = styled(Stack)`
 `;
 
 const DashboardPosts = () => {
+	const [createPost, setCreatePost] = React.useState(false);
+
+	const handleClick = () => {
+		setCreatePost(true);
+	};
+
+	if (createPost) return <PostCreate />;
 	return (
 		<Stack>
 			<Box borderRadius={3} bgcolor='#f5f5f5'>
@@ -25,6 +34,7 @@ const DashboardPosts = () => {
 					</Typography>
 				</Typography>
 				<Button
+					onClick={handleClick}
 					variant='contained'
 					startIcon={<AddCircleOutlineOutlinedIcon />}
 				>

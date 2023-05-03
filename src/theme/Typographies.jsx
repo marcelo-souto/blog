@@ -54,4 +54,19 @@ const title4v1 = {
 	fontSize: 18
 };
 
-export default { title1v1, title2v1, title2v2, title3v1, title4v1, title2v3 };
+const title4v2 = {
+	fontFamily: 'inter',
+	fontWeight: 600,
+	color: grey[800],
+	fontSize: 18
+};
+
+export default {
+	title1v1,
+	title2v1,
+	title2v2,
+	title3v1,
+	title4v1,
+	title2v3,
+	title4v2
+};

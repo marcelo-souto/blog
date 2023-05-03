@@ -109,6 +109,15 @@ const POST_UPDATE_USER = (formData) => {
 	};
 };
 
+const GET_CATEGORIES = () => {
+	return {
+		url: API_URL + '/category/get',
+		options: {
+			method: 'GET'
+		}
+	};
+};
+
 export {
 	POST_CREATE_USER,
 	POST_CREATE_TOKEN,
@@ -117,5 +126,6 @@ export {
 	POST_CREATE_ACCESS_TOKEN,
 	POST_DELETE_REFRESH_TOKEN,
 	POST_FORGET_PASSWORD,
-	POST_UPDATE_USER
+	POST_UPDATE_USER,
+	GET_CATEGORIES
 };
