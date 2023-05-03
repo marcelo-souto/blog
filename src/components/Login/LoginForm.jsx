@@ -13,12 +13,18 @@ import useForm from '../../hooks/useForm';
 import Input from '../Input';
 import Link from '../Link';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
-import { UserContext } from '../../context/UserContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../../store/user/user';
+import { Navigate } from 'react-router-dom';
 
 const LoginForm = () => {
-	const [showPassword, setShowPassword] = useState(false);
+	const dispatch = useDispatch();
+	const { token, user } = useSelector((state) => state);
 
-	const { userLogin, loading, error } = React.useContext(UserContext);
+	const loading = token.loading || user.loading;
+	const error = token.error || user.error;
+
+	const [showPassword, setShowPassword] = useState(false);
 
 	const email = useForm('email');
 	const password = useForm('password');
@@ -27,7 +33,7 @@ const LoginForm = () => {
 		e.preventDefault();
 
 		if (email.validate() && password.validate()) {
-			await userLogin(email.value, password.value);
+			dispatch(userLogin({ email: email.value, password: password.value }));
 		}
 	};
 

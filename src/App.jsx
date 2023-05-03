@@ -14,8 +14,17 @@ import DashboardPage from './pages/DashboardPage';
 import ProtectedRoute from './helpers/ProtectedRoute';
 import Header from './components/Global/Header';
 import Footer from './components/Global/Footer';
+import { useDispatch } from 'react-redux';
+import { autoLogin } from './store/user/user';
 
 const App = () => {
+
+	const dispatch = useDispatch()
+
+	React.useEffect(() => {
+		dispatch(autoLogin())
+	}, [])
+
 	return (
 		<ThemeProvider theme={theme}>
 			<UserStorage>

@@ -17,9 +17,10 @@ import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 
 import { Link, useLocation } from 'react-router-dom';
 import UserAvatarDashboard from './UserAvatarDashboard';
+import { useSelector } from 'react-redux';
 
 const DashboardMenu = ({ mobile }) => {
-	const { user } = React.useContext(UserContext);
+	const { data } = useSelector((state) => state.user);
 	const { pathname } = useLocation();
 
 	return (
@@ -43,7 +44,7 @@ const DashboardMenu = ({ mobile }) => {
 							variant='h6'
 							component='p'
 						>
-							Olá, {user.name.split(' ')[0]}
+							Olá, {data.name.split(' ')[0]}
 						</Typography>
 					</>
 				)}

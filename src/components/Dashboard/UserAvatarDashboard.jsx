@@ -6,27 +6,24 @@ import useFetch from '../../hooks/useFetch';
 import { POST_UPDATE_USER } from '../../api/api';
 import CameraAltRoundedIcon from '@mui/icons-material/CameraAltRounded';
 import UserAvatar from './UserAvatar.jsx';
+import { useSelector } from 'react-redux';
 
 const UserAvatarDashboard = () => {
-
-	const { user } = React.useContext(UserContext);
+	const { data } = useSelector((state) => state.user);
 	const [image, setImage] = React.useState({});
 
 	const { request, error, loading } = useFetch();
 
 	const handleUserPhotoUpload = async () => {
-
 		const formData = new FormData();
 		formData.append('upload', image.raw);
 
 		const { url, options } = POST_UPDATE_USER(formData);
 		const { response } = await request(url, options);
 
-		if(response.ok) {
-			user.avatar.url = image.preview
-			setImage({})
+		if (response.ok) {
+			setImage({});
 		}
-
 	};
 
 	const handleUserPhoto = ({ target }) => {
@@ -38,12 +35,11 @@ const UserAvatarDashboard = () => {
 
 	return (
 		<>
-			{user && (
+			{data && (
 				<Stack display='block' position='relative'>
-
 					<UserAvatar
 						loading={loading}
-						image={image.preview ? image.preview : user.avatar.url}
+						image={image.preview ? image.preview : data.avatar.url}
 					/>
 
 					<IconButton

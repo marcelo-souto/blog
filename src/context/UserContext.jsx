@@ -87,9 +87,9 @@ export const UserStorage = ({ children }) => {
 	}, []);
 
 
-	React.useEffect(() => {
-		autoUserLogin();
-	}, []);
+	// React.useEffect(() => {
+	// 	autoUserLogin();
+	// }, []);
 
 	return (
 		<UserContext.Provider

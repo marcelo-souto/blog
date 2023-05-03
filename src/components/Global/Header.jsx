@@ -17,9 +17,11 @@ import { UserContext } from '../../context/UserContext';
 import Link from '../Link';
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
 import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-	const { login, user, userLogout } = React.useContext(UserContext);
+	const { data } = useSelector((state) => state.user);
+	const { userLogout } = React.useContext(UserContext);
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 
@@ -32,9 +34,9 @@ const Header = () => {
 	};
 
 	const handleLogout = async () => {
-		await userLogout()
-		setAnchorEl(null)
-	}
+		await userLogout();
+		setAnchorEl(null);
+	};
 
 	return (
 		<AppBar
@@ -62,19 +64,17 @@ const Header = () => {
 					PostIt
 				</Button>
 
-				{login && user && (
+				{data && (
 					<IconButton component={Link} to='/dashboard' onClick={handleClick}>
 						<Avatar
-							alt={user.name}
-							src={user.avatar.url}
+							alt={data.name}
+							src={data.avatar.url}
 							sx={{ width: 32, height: 32, backgroundColor: 'primary.main' }}
 						/>
-							
-						
 					</IconButton>
 				)}
 
-				{!login && (
+				{!data && (
 					<Stack direction='row' spacing={2}>
 						<Button
 							component={Link}

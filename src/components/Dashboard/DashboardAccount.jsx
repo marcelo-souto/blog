@@ -1,12 +1,11 @@
 import React from 'react';
-import { UserContext } from '../../context/UserContext';
 import { Button, Link, Stack, Typography } from '@mui/material';
 import DashboardAccountItem from './DashboardAccountItem';
-import useForm from '../../hooks/useForm';
 import DashboardAccountModal from './DashboardAccountModal';
+import { useSelector } from 'react-redux';
 
 const DashboardAccount = () => {
-	const { user } = React.useContext(UserContext);
+	const { data } = useSelector(state => state.user)
 	const [open, setOpen] = React.useState(false);
 
 	const handleOpen = () => setOpen(true);
@@ -27,9 +26,9 @@ const DashboardAccount = () => {
 				</Link>
 			</Stack>
 
-			<DashboardAccountItem legend='Nome:' info={user?.name} />
-			<DashboardAccountItem legend='Email:' info={user?.email} />
-			<DashboardAccountItem legend='URL da Imagem:' info={user?.avatar?.url} />
+			<DashboardAccountItem legend='Nome:' info={data?.name} />
+			<DashboardAccountItem legend='Email:' info={data?.email} />
+			<DashboardAccountItem legend='URL da Imagem:' info={data?.avatar?.url} />
 
 			{open && <DashboardAccountModal open={open} handleClose={handleClose} />}
 		</Stack>

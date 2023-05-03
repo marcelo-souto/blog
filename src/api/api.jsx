@@ -84,7 +84,7 @@ const POST_FORGET_PASSWORD = (body) => {
 	};
 };
 
-const GET_USER = ({ accessToken }) => {
+const GET_USER = (accessToken) => {
 	return {
 		url: API_URL + '/user/get/me',
 		options: {
