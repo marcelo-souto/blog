@@ -1,28 +1,45 @@
 import React from 'react';
 import TextEditor from '../TextEditor';
-import { Stack, Typography, Autocomplete, TextField } from '@mui/material';
+import { Stack, Typography, Autocomplete } from '@mui/material';
 import Input from '../Input';
-import { GET_CATEGORIES } from '../../api/api';
+import { GET_CATEGORIES, POST_CREATE_POST } from '../../api/api';
 import useFetch from '../../hooks/useFetch';
+import Button from '../Button';
 
 const PostCreate = () => {
-
 	const { loading, data, error, request } = useFetch();
 
-	const [categories, setCategories] = React.useState([]);
-	const [value, setValue] = React.useState([]);
+	const [form, setForm] = React.useState({
+		title: '',
+		categories: [],
+		content: ''
+	});
+
+	const disabled = !form.title || !form.content || !form.categories.length > 0;
 
 	React.useEffect(() => {
-
 		const getData = async () => {
 			const { url, options } = GET_CATEGORIES();
-			const { json, response } = await request(url, options);
-
-			if (response.ok) setCategories([...json.data]);
+			await request(url, options);
 		};
 		getData();
-		
 	}, []);
+
+	const handleClick = async () => {
+		if (!disabled) {
+			try {
+				const categories = form.categories.map((item) => item.categoryId);
+
+				const { url, options } = POST_CREATE_POST({ ...form, categories });
+				const response = await fetch(url, options);
+				const json = await response.json();
+
+				console.log(json);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
 
 	return (
 		<Stack spacing={6}>
@@ -38,7 +55,11 @@ const PostCreate = () => {
 						ele deve ser curto e resumir a ideia principal do seu texto.
 					</Typography>
 				</Stack>
-				<Input fullWidth />
+				<Input
+					value={form.title}
+					onChange={({ target }) => setForm({ ...form, title: target.value })}
+					fullWidth
+				/>
 			</Stack>
 
 			<Stack spacing={2}>
@@ -52,11 +73,13 @@ const PostCreate = () => {
 					</Typography>
 				</Stack>
 				<Autocomplete
-					value={value}
-					onChange={(event, newValue) => setValue(newValue)}
+					value={form.categories}
+					onChange={(event, newValue) =>
+						setForm({ ...form, categories: newValue })
+					}
 					multiple
 					id='categories'
-					options={categories}
+					options={data?.data || []}
 					defaultValue={[]}
 					getOptionLabel={(option) => option.name}
 					size='small'
@@ -78,8 +101,14 @@ const PostCreate = () => {
 						ele deve ser curto e resumir a ideia principal do seu texto.
 					</Typography>
 				</Stack>
-				<TextEditor />
+				<TextEditor
+					value={form.content}
+					onChange={(value) => setForm({ ...form, content: value })}
+				/>
 			</Stack>
+			<Button variant='contained' onClick={handleClick} disabled={disabled}>
+				Postar
+			</Button>
 		</Stack>
 	);
 };

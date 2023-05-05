@@ -2,6 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import styled from '@emotion/styled';
+import { Stack } from '@mui/material';
 
 const modules = {
 	toolbar: [
@@ -20,7 +21,6 @@ const modules = {
 
 const Editor = styled(ReactQuill)`
 	font-family: 'Inter', sans-serif;
-	border-radius: 60px !important;
 
 	& .ql-toolbar {
 		border-radius: 12px 12px 0 0;
@@ -29,6 +29,8 @@ const Editor = styled(ReactQuill)`
 
 	& .ql-container {
 		border-radius: 0 0 12px 12px;
+		min-height: 220px;
+		box-sizing: border-box;
 	}
 
 	& .ql-container:is(:hover) {
@@ -38,7 +40,9 @@ const Editor = styled(ReactQuill)`
 
 const TextEditor = ({ value, onChange }) => {
 	return (
-		<Editor  modules={modules} value={value} onChange={onChange} />
+		<Stack display='block'>
+			<Editor modules={modules} value={value} onChange={onChange} />
+		</Stack>
 	);
 };
 

@@ -57,7 +57,7 @@ const token = createSlice({
 	}
 });
 
-const { renewAccessToken, fetchStarted, fetchError, fetchSuccess } =
+export const { renewAccessToken, fetchStarted, fetchError, fetchSuccess } =
 	token.actions;
 
 export const fetchToken = (user) => async (dispatch) => {

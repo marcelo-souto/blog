@@ -1,5 +1,4 @@
 import React from 'react';
-import storage from '../functions/handleLocalStorage';
 import { createNewAccessToken } from '../functions/handleToken';
 
 const useFetch = () => {
@@ -18,18 +17,12 @@ const useFetch = () => {
 			json = await response.json();
 
 			if (!response.ok && response.status === 401) {
-				const refreshToken = storage.get('refreshToken');
 
-				if (refreshToken) {
-					const accessToken = await createNewAccessToken(refreshToken);
+				const { payload } = await createNewAccessToken()
+				options.headers.authorization = 'Bearer ' + payload;
 
-					storage.set('accessToken', accessToken);
-
-					options.headers.authorization = 'Bearer ' + accessToken;
-
-					response = await fetch(url, options);
-					json = await response.json();
-				}
+				response = await fetch(url, options);
+				json = await response.json();
 			}
 
 			if (!response.ok) throw new Error(json.message);

@@ -11,6 +11,7 @@ const Input = ({
 	onBlur,
 	value,
 	setValue,
+	error,
 	...props
 }) => {
 	return (
@@ -24,11 +25,11 @@ const Input = ({
 				onChange={onChange}
 				onBlur={onBlur}
 				{...props}
-				error={status?.error ? true : false}
+				error={status?.error ? true : false || error}
 			/>
-			{status?.error && (
+			{status?.error || error && (
 				<FormHelperText sx={{ color: 'error.main' }}>
-					{status?.error}
+					{status?.error || error}
 				</FormHelperText>
 			)}
 		</div>

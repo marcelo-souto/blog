@@ -118,6 +118,32 @@ const GET_CATEGORIES = () => {
 	};
 };
 
+const POST_CREATE_POST = (body) => {
+	return {
+		url: API_URL + '/post/create',
+		options: {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: 'Bearer ' + storage.get('accessToken')
+			},
+			body: JSON.stringify(body)
+		}
+	};
+};
+
+const GET_POSTS = ({ limit, page, user }) => {
+	return {
+		url: `${API_URL}/post/get?_limit=${limit || 4}&_page=${page}&_user=${user}`,
+		options: {
+			method: 'GET',
+			headers: {
+				authorization: 'Bearer ' + storage.get('accessToken')
+			}
+		}
+	};
+};
+
 export {
 	POST_CREATE_USER,
 	POST_CREATE_TOKEN,
@@ -127,5 +153,7 @@ export {
 	POST_DELETE_REFRESH_TOKEN,
 	POST_FORGET_PASSWORD,
 	POST_UPDATE_USER,
-	GET_CATEGORIES
+	GET_CATEGORIES,
+	POST_CREATE_POST,
+	GET_POSTS
 };

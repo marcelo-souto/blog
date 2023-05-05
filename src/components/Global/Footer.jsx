@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
 	return (
-		<Stack padding={3} backgroundColor='#F5F5F5'>
+		<Stack padding={3} mt={8} backgroundColor='#F5F5F5'>
 			<Typography
 				variant='body1'
 				textAlign='center'

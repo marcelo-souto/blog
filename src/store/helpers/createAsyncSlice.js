@@ -43,7 +43,7 @@ const createAsyncSlice = (config) => {
 			let response = await fetch(url, options);
 			let json = await response.json();
 
-			if (!response.ok) {
+			if (!response.ok && response.status === 401) {
 				const { payload } = await dispatch(fetchNewAccessToken());
 				options.headers.authorization = 'Bearer ' + payload;
 

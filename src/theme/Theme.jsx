@@ -16,7 +16,7 @@ let theme = createTheme({
 		}
 	},
 	typography: {
-		fontFamily: ['Roboto', 'Inter', 'sans-serif'].join(','),
+		fontFamily: ['Inter', 'sans-serif'].join(','),
 		...Typographies
 	},
 	components: {
