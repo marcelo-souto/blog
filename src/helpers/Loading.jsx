@@ -13,6 +13,7 @@ const Loading = styled.div`
 	height: 32px;
 	border-radius: 50%;
 	border: 8px solid;
+	margin: 0 auto;
 	border-color: #e4e4ed;
 	border-right-color: ${({ theme }) => theme.palette.primary.main};
 	animation: ${loadingAnimation} 1s infinite linear;

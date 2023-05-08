@@ -24,7 +24,7 @@ const DashboardPostsSection = () => {
 				component='ul'
 				display='grid'
 				gridTemplateColumns='1fr 1fr'
-				gap={2}
+				gap={4}
 				padding={0}
 			>
 				{data?.data?.map((post, index) => {
@@ -36,14 +36,15 @@ const DashboardPostsSection = () => {
 							bgcolor='#F5F5F5'
 							borderRadius={3}
 							alignItems='end'
-              justifyContent='space-between'
+							justifyContent='space-between'
+							boxShadow='0px 0px 2px 2px rgba(24, 24, 24, 0.075);'
 							sx={{
 								aspectRatio: '4/2'
 							}}
 							key={index}
 						>
 							<Typography variant='body1'>{post.title}</Typography>
-							<Stack flexDirection='row' gap='4px' >
+							<Stack flexDirection='row' gap='4px'>
 								<VisibilityIcon />
 								<Typography>{post.views}</Typography>
 							</Stack>

@@ -12,6 +12,7 @@ const PostCreate = () => {
 	const [form, setForm] = React.useState({
 		title: '',
 		categories: [],
+		banner: '',
 		content: ''
 	});
 
@@ -58,6 +59,25 @@ const PostCreate = () => {
 				<Input
 					value={form.title}
 					onChange={({ target }) => setForm({ ...form, title: target.value })}
+					placeholder='Ex.: O mercado de trabalho no sec. XXI'
+					fullWidth
+				/>
+			</Stack>
+
+			<Stack spacing={2}>
+				<Stack spacing={1}>
+					<Typography component='label' variant='title4v2'>
+						Banner
+					</Typography>
+					<Typography variant='body2' color='grey.600'>
+						o título do seu post será a chamada do seu conteúdo. Lembre-se que
+						ele deve ser curto e resumir a ideia principal do seu texto.
+					</Typography>
+				</Stack>
+				<Input
+					value={form.banner}
+					onChange={({ target }) => setForm({ ...form, banner: target.value })}
+					placeholder='Ex.: https://www.usuario.com/minhaimagem.png'
 					fullWidth
 				/>
 			</Stack>

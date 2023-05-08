@@ -26,7 +26,7 @@ const DashboardPosts = () => {
 
 	if (createPost) return <PostCreate />;
 	return (
-		<Stack>
+		<Stack gap={6}>
 			<Box borderRadius={3} bgcolor='#f5f5f5'>
 				<Typography variant='title4v1' color='grey.800'>
 					Novas ideias?{' '}
