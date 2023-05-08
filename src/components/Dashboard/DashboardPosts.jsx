@@ -3,10 +3,8 @@ import { Stack, Typography } from '@mui/material';
 import Button from '../Button';
 import styled from '@emotion/styled';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import TextEditor from '../TextEditor';
 import PostCreate from '../Post/PostCreate';
-import { GET_POSTS } from '../../api/api';
-import useFetch from '../../hooks/useFetch';
+import DashboardPostsSection from './DashboardPostsSection';
 
 const Box = styled(Stack)`
 	padding: 1.8rem;
@@ -19,18 +17,8 @@ const Box = styled(Stack)`
 `;
 
 const DashboardPosts = () => {
+
 	const [createPost, setCreatePost] = React.useState(false);
-
-	const { loading, error, data, request } = useFetch();
-
-	React.useEffect(() => {
-		const getData = async () => {
-			const { url, options } = GET_POSTS({ page: 1, user: 1 });
-			const { json, response } = await request(url, options);
-			console.log(json)
-		};
-		getData()
-	}, []);
 
 	const handleClick = () => {
 		setCreatePost(true);
@@ -39,7 +27,6 @@ const DashboardPosts = () => {
 	if (createPost) return <PostCreate />;
 	return (
 		<Stack>
-			{error && <p>{error}</p>}
 			<Box borderRadius={3} bgcolor='#f5f5f5'>
 				<Typography variant='title4v1' color='grey.800'>
 					Novas ideias?{' '}
@@ -55,13 +42,7 @@ const DashboardPosts = () => {
 					Novo post
 				</Button>
 			</Box>
-			<ul>
-				{data?.data?.map((post, index) => {
-					return <li key={index}>
-						<p>{post.title}</p>
-					</li>;
-				})}
-			</ul>
+			<DashboardPostsSection />
 		</Stack>
 	);
 };
