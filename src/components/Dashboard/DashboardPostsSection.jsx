@@ -13,8 +13,7 @@ import useFetch from '../../hooks/useFetch';
 import { GET_POSTS } from '../../api/api';
 import Loading from '../../helpers/Loading';
 
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const DashboardPostsSection = () => {
@@ -57,7 +56,33 @@ const DashboardPostsSection = () => {
 									image={post.banner}
 								/>
 								<CardContent sx={{ padding: 3 }}>
-									<Typography variant='body1' fontWeight={500}>
+									<Stack direction='row' spacing={1}>
+										<Stack
+											direction='row'
+											spacing={1}
+											padding='3px 6px'
+											bgcolor='white'
+											borderRadius={2}
+										>
+											<FavoriteRoundedIcon sx={{ color: 'grey.400' }} />
+											<Typography fontWeight='600' color='grey.500'>
+												{post.totalLikes}
+											</Typography>
+										</Stack>
+										<Stack
+											direction='row'
+											spacing={1}
+											padding='3px 6px'
+											bgcolor='white'
+											borderRadius={2}
+										>
+											<VisibilityIcon sx={{ color: 'grey.400' }} />
+											<Typography fontWeight='600' color='grey.500'>
+												{post.views}
+											</Typography>
+										</Stack>
+									</Stack>
+									<Typography variant='body1' fontWeight={600}>
 										{post.title}
 									</Typography>
 								</CardContent>

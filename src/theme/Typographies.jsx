@@ -36,7 +36,7 @@ const title2v3 = {
 	fontFamily: 'Inter',
 	fontWeight: 600,
 	fontSize: 24,
-	color: grey[700],
+	color: grey[800],
 	display: 'flex'
 };
 
