@@ -27,6 +27,7 @@ const PostCreate = () => {
 	}, []);
 
 	const handleClick = async () => {
+		
 		if (!disabled) {
 			try {
 				const categories = form.categories.map((item) => item.categoryId);

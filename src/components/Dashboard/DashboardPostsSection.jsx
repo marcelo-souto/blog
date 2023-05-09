@@ -1,8 +1,20 @@
-import { Stack, Typography } from '@mui/material';
+import {
+	Stack,
+	Typography,
+	Card,
+	CardMedia,
+	CardContent,
+	CardActionArea,
+	CardActions,
+	IconButton
+} from '@mui/material';
 import React from 'react';
 import useFetch from '../../hooks/useFetch';
 import { GET_POSTS } from '../../api/api';
 import Loading from '../../helpers/Loading';
+
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const DashboardPostsSection = () => {
@@ -29,26 +41,28 @@ const DashboardPostsSection = () => {
 			>
 				{data?.data?.map((post, index) => {
 					return (
-						<Stack
-							component='li'
-							p={3}
-							flexDirection='row'
-							bgcolor='#F5F5F5'
-							borderRadius={3}
-							alignItems='end'
-							justifyContent='space-between'
-							boxShadow='0px 0px 2px 2px rgba(24, 24, 24, 0.075);'
+						<Card
 							sx={{
-								aspectRatio: '4/2'
+								maxWidth: 345,
+								borderRadius: 3,
+								backgroundColor: 'grey.100',
+								boxShadow: '0px 0px 2px 2px rgba(24, 24, 24, 0.075)'
 							}}
-							key={index}
 						>
-							<Typography variant='body1'>{post.title}</Typography>
-							<Stack flexDirection='row' gap='4px'>
-								<VisibilityIcon />
-								<Typography>{post.views}</Typography>
-							</Stack>
-						</Stack>
+							<CardActionArea>
+								<CardMedia
+									component='img'
+									alt='green iguana'
+									height='160'
+									image={post.banner}
+								/>
+								<CardContent sx={{ padding: 3 }}>
+									<Typography variant='body1' fontWeight={500}>
+										{post.title}
+									</Typography>
+								</CardContent>
+							</CardActionArea>
+						</Card>
 					);
 				})}
 			</Stack>
