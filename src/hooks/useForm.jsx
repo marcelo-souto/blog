@@ -35,6 +35,10 @@ const types = {
 	bool: {
 		regex: /^true|false$/,
 		message: 'Insira um valor correto'
+	},
+	url: {
+		regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+		message: 'Insira um link válido'
 	}
 };
 

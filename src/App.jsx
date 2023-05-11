@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { Stack } from '@mui/material';
@@ -21,10 +21,18 @@ import { autoLogin } from './store/user/user';
 
 const App = () => {
 	const dispatch = useDispatch();
+	const { pathname } = useLocation();
 
 	React.useEffect(() => {
 		dispatch(autoLogin());
 	}, []);
+
+	React.useEffect(() => {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		})
+	}, [pathname]);
 
 	return (
 		<ThemeProvider theme={theme}>

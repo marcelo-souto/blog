@@ -12,13 +12,28 @@ const DashboardPostsSection = () => {
 	const [changeGrid, setChangeGrid] = React.useState(false);
 	const { loading, error, data, request } = useFetch();
 
+	const [infinite, setInfinite] = React.useState(true);
+	const [page, setPage] = React.useState(1);
+
+	const [posts, setPosts] = React.useState([]);
+
 	React.useEffect(() => {
 		const getData = async () => {
-			const { url, options } = GET_POSTS({ page: 1, user: 1 });
-			await request(url, options);
+			const { url, options } = GET_POSTS({ page, user: 1, limit: 2 });
+			const { response, json } = await request(url, options);
+
+			if (response.ok) {
+				if(json.data.length === 0) setInfinite(false)
+				setPosts([...posts, ...json.data]);
+			}
 		};
+
 		getData();
-	}, []);
+	}, [page]);
+
+	const handleClick = () => {
+		setPage((page) => page + 1);
+	};
 
 	return (
 		<Stack>
@@ -41,8 +56,7 @@ const DashboardPostsSection = () => {
 					</IconButton>
 				)}
 			</Stack>
-			{loading && <Loading />}
-			{!loading && data && (
+			{posts && (
 				<Stack
 					component='ul'
 					display='grid'
@@ -50,18 +64,27 @@ const DashboardPostsSection = () => {
 					gap={4}
 					padding={0}
 				>
-					{data?.data?.map((post, index) => (
+					{posts?.map((post, index) => (
 						<PostCard post={post} size={changeGrid && 'large'} />
 					))}
 				</Stack>
 			)}
-			<Button
-				variant='outlined'
-				size='small'
-				sx={{ width: 'max-content', alignSelf: 'end' }}
-			>
-				Carregar Mais
-			</Button>
+			{loading && <Loading />}
+			{!loading && infinite && (
+				<Button
+					variant='outlined'
+					size='small'
+					sx={{ width: 'max-content', alignSelf: 'end' }}
+					onClick={handleClick}
+				>
+					Carregar Mais
+				</Button>
+			)}
+			{!infinite && (
+				<Typography mt={4} color='grey.500' textAlign='center'>
+					Não há mais posts :(
+				</Typography>
+			)}
 		</Stack>
 	);
 };
