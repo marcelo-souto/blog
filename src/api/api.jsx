@@ -144,6 +144,15 @@ const GET_POSTS = ({ limit, page, user }) => {
 	};
 };
 
+const GET_POST = (slug) => {
+	return {
+		url: `${API_URL}/post/get/${slug}`,
+		options: {
+			method: 'GET'
+		}
+	};
+};
+
 export {
 	POST_CREATE_USER,
 	POST_CREATE_TOKEN,
@@ -155,5 +164,6 @@ export {
 	POST_UPDATE_USER,
 	GET_CATEGORIES,
 	POST_CREATE_POST,
-	GET_POSTS
+	GET_POSTS,
+	GET_POST
 };

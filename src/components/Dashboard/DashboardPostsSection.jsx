@@ -6,6 +6,7 @@ import Loading from '../../helpers/Loading';
 import PostCard from '../Post/PostCard';
 import TableRowsRoundedIcon from '@mui/icons-material/TableRowsRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import Button from '../Button';
 
 const DashboardPostsSection = () => {
 	const [changeGrid, setChangeGrid] = React.useState(false);
@@ -50,10 +51,17 @@ const DashboardPostsSection = () => {
 					padding={0}
 				>
 					{data?.data?.map((post, index) => (
-						<PostCard post={post} size={changeGrid && 'large'}/>
+						<PostCard post={post} size={changeGrid && 'large'} />
 					))}
 				</Stack>
 			)}
+			<Button
+				variant='outlined'
+				size='small'
+				sx={{ width: 'max-content', alignSelf: 'end' }}
+			>
+				Carregar Mais
+			</Button>
 		</Stack>
 	);
 };
